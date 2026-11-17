@@ -109,3 +109,8 @@ body{background:#231415!important;background-image:radial-gradient(circle at 50%
 #app .jbc-day-panel .campaign-actions{gap:4px!important;flex-wrap:wrap}
 #app .jbc-day-panel .campaign-actions button{padding:5px 6px!important;font-size:10px!important}
 #app .jbc-day-panel .guest-insight{font-size:10px!important;line-height:1.4!important;padding:5px!important}
+
+#app .workbench .ing{display:flex!important;grid-template-columns:none!important}
+#app .jbc-serve{border:2px solid #edba72;border-radius:24px;background:linear-gradient(#9a3f36,#6c2628);color:#fff0c4;font-size:15px;font-weight:900;padding:12px 15px;margin:2px 12px 12px;box-shadow:inset 0 1px #e8a86c,0 3px 0 #442222;cursor:pointer}
+#app .jbc-serve:disabled{opacity:.55;cursor:not-allowed}
+#app .jbc-serve:not(:disabled):hover{filter:brightness(1.12)}
