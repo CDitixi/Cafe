@@ -1,0 +1,111 @@
+/* The Jolly Bean Café — Illustrated Playable Interface v0.4 */
+:root{--j-ink:#3b211b;--j-wine:#6e2e30;--j-caramel:#c38b51;--j-paper:#f7e7c8;--j-brass:#e5bd72;--j-stroke:#956339;--j-cherry:#812a30}
+body{background:#231415!important;background-image:radial-gradient(circle at 50% 0%,#74432c80,transparent 52%),repeating-linear-gradient(90deg,#2b191a 0 13px,#341e1d 14px 24px,#261519 25px 32px)!important;color:var(--j-ink)}
+#app{max-width:1750px!important;padding:10px 16px 28px!important}
+#app .topbar{padding:7px 20px!important;min-height:73px!important;border:3px double #f2c883!important;border-radius:18px!important;box-shadow:inset 0 0 0 2px #692c2a,0 5px 0 #1e1111,0 13px 25px #130c0b80!important;background:linear-gradient(95deg,#592626 0%,#7e3e31 36%,#4b2324 100%)!important}
+#app .brand h1{font-size:clamp(24px,2.6vw,37px)!important;color:#ffdd98!important;text-shadow:0 2px 0 #57251f,1px 2px 6px #1c1010}
+#app .brand .overline{font-size:9px;letter-spacing:.16em}
+#app .brand small{font-size:10px;color:#ffdfa6}
+#app .top-pill{border:2px solid #b78b54;border-radius:25px;background:#2b181a78;padding:7px 14px;min-width:95px;white-space:nowrap}
+#app .top-pill b{color:#ffe2a0}
+#app .iconbtn{width:36px;height:36px}
+#app .shift-panel{min-height:60px;max-width:none;margin:11px 0 12px;padding:9px 16px;border-radius:11px;border:2px solid #b78044;box-shadow:inset 0 0 0 1px #f8db9c,0 5px 8px #180e0b77;background:linear-gradient(92deg,#f1d39c,#fff1cf 53%,#ebc588)}
+#app .shift-copy h2{font-size:15px;margin:1px 0 2px;color:#6d3529}
+#app .shift-copy p{font-size:11px;margin:0;color:#77563e}
+#app .shift-kicker{font-size:8px;color:#a36c40}
+#app .shift-controls .main-btn{padding:8px 14px;font-size:12px;white-space:nowrap}
+#app .shift-controls .ghost-btn{padding:8px 13px;font-size:12px}
+/* 1. Major layout — preserve DOM and original event listeners. */
+#app .layout.jbc-layout{display:flex!important;flex-direction:column!important;gap:12px!important;margin-top:0!important;align-items:stretch!important}
+#app .layout.jbc-layout>.left-rail{display:none!important}
+#app .layout.jbc-layout>.main-column{display:contents!important}
+#app .jbc-showcase{display:grid;grid-template-columns:minmax(250px,295px) minmax(0,1fr);gap:0;min-height:350px;background:#45221c;border:5px ridge #bd884d;border-radius:16px;overflow:hidden;box-shadow:0 7px 0 #1e1211,0 14px 22px #100a09b3;position:relative}
+#app .jbc-showcase:before{content:'✦ THE JOLLY BEAN CAFÉ · EST. 1933 ✦';position:absolute;top:4px;left:42%;z-index:2;color:#f9d892;font-size:9px;letter-spacing:.2em;text-shadow:1px 2px #4e2c27;pointer-events:none}
+#app .jbc-showcase .order-panel{border:0!important;border-right:4px solid #9a6337!important;border-radius:0!important;box-shadow:none!important;margin:0!important;background:linear-gradient(115deg,#f6dcae,#f2ce9d 48%,#ffebc8)!important;padding:11px;min-width:0;max-height:395px;overflow-y:auto}
+#app .jbc-showcase .order-panel .ribbon{padding:7px 5px!important;border-radius:9px!important;background:#72322a!important;color:#ffe6ac!important;letter-spacing:.08em;font-size:12px}
+#app .jbc-showcase .order-head{gap:8px!important}
+#app .jbc-showcase .order-head img{width:91px!important;height:98px!important;object-fit:cover;border:4px ridge #b67b43;border-radius:14px;box-shadow:2px 3px 4px #69492c80}
+#app .jbc-showcase .order-head strong{font-size:17px!important;color:#56291f}
+#app .jbc-showcase .order-panel .quote{font-size:13px!important;line-height:1.65!important;background:#fff0d3db!important;border:1px dashed #af7848!important;border-radius:10px;padding:10px!important;margin:8px 0!important}
+#app .jbc-showcase .order-panel .tag{padding:4px 7px;font-size:10px}
+#app .jbc-showcase .order-panel .small-note{font-size:10px}
+#app .jbc-showcase #scene{min-height:350px!important;height:100%!important;border:0!important;border-radius:0!important;margin:0!important;box-shadow:none!important;background:linear-gradient(#5b3029,#75432f 78%,#361d1b)!important}
+#app #scene .scene-window{filter:saturate(1.1)}
+#app #scene .machine{transition:transform .22s ease,filter .25s!important}
+#app #scene .machine:hover{transform:translateY(-10px) rotate(-1.5deg)!important;filter:drop-shadow(0 7px 5px #190d0e)!important}
+#app #scene .machine.active{filter:drop-shadow(0 0 8px #ffe5a0)!important;animation:jbc-stage-idle 2.3s ease-in-out infinite}
+@keyframes jbc-stage-idle{50%{transform:translateY(-3px)}}
+#app #scene .speech{z-index:5}
+#app #scene .speech .bubble{background:#fff0d0!important;color:#4d3126!important;border-color:#a76d3c!important;box-shadow:1px 4px 0 #5d3526aa!important}
+/* 2. Practical recipe bench, stage side menu and drink preview. */
+#app .jbc-workspace{display:grid;grid-template-columns:157px minmax(0,1fr);gap:12px;align-items:stretch}
+#app .jbc-menu{border:3px ridge #b27c43;border-radius:15px;padding:10px 8px;background:linear-gradient(155deg,#75352d,#432222 75%);box-shadow:0 6px 0 #160c0e;display:flex;flex-direction:column;gap:9px}
+#app .jbc-menu-head{text-align:center;font-size:12px;color:#f1d49a;letter-spacing:.17em;padding:8px 0 3px;border-bottom:1px solid #b78952}
+#app .jbc-menu button{border:2px solid #c18d56;border-radius:10px;padding:12px 5px;background:#6a3130;color:#ffe2ae;font-size:13px;text-align:center;font-weight:800;box-shadow:inset 0 1px #e5b98044;transition:transform .12s,background .12s}
+#app .jbc-menu button:hover,#app .jbc-menu button:focus-visible{transform:translateX(2px);background:#934940}
+#app .jbc-menu button.jbc-primary{background:linear-gradient(#f7d38d,#d69d55);color:#5a3022;border-color:#f9e4b2}
+#app .jbc-workspace .workbench{display:grid!important;grid-template-columns:minmax(290px,1.15fr) minmax(285px,1.05fr) minmax(225px,.77fr)!important;gap:10px!important;min-width:0;margin:0!important}
+#app .workbench>.panel{min-width:0;margin:0!important;border:3px ridge #b67d41!important;border-radius:14px!important;box-shadow:inset 0 0 0 2px #ffe0a1,0 5px 0 #492b21!important;background:linear-gradient(115deg,#ffeed1,#f1d6a6)!important;overflow:hidden}
+#app .workbench>.panel .ribbon{background:linear-gradient(90deg,#7e382c,#9b5639)!important;color:#fff0cb!important;font-size:13px!important;padding:10px 12px!important}
+#app .workbench .bench-head{padding:12px 12px 5px}
+#app .workbench .bench-head strong{font-size:13px}
+#app .workbench .ing{background:linear-gradient(#fff0d5,#f3d6ac)!important;border:2px solid #c49a65!important;border-radius:12px!important;padding:7px 7px!important;min-height:78px;flex-direction:column;justify-content:center;gap:3px!important;text-align:center;box-shadow:inset 0 1px #fff8e7}
+#app .workbench .ing.chosen{border-color:#e6a33f!important;background:linear-gradient(#fff0c5,#fbd290)!important;box-shadow:inset 0 0 0 1px #f9c565}
+#app .workbench .ing-icon{font-size:24px!important;line-height:1.1}
+#app .workbench .ing-name{font-size:12px!important;font-weight:800}
+#app .workbench .ing-unit{display:none}
+#app .workbench .ing .qty{justify-content:center;align-items:center;font-size:11px;gap:4px}
+#app .workbench .ing .qty button{width:24px!important;height:24px!important;padding:0!important;font-size:13px}
+#app .workbench #ingredients{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;padding:8px 10px!important;max-height:300px;overflow-y:auto}
+#app .workbench .ing.jbc-hidden{display:none!important}
+#app .jbc-categories{display:flex;flex-wrap:wrap;gap:5px;padding:7px 10px 2px}
+#app .jbc-categories button{border:1px solid #b77c4b;background:#f9ddb2;color:#6a3d28;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:800;cursor:pointer}
+#app .jbc-categories button[aria-pressed=true]{background:#79382f;color:#fff0ca;border-color:#e2b16c}
+#app #station-content{min-height:207px}
+#app #station-content .main-btn,#app #submit-btn{background:linear-gradient(#9a4a36,#692a2b)!important;border:2px solid #d5a16a!important;color:#ffecc0!important;border-radius:12px!important;box-shadow:0 3px 0 #412122!important}
+#app #station-content .main-btn:hover,#app #submit-btn:hover{filter:brightness(1.1)}
+#app .jbc-machine-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:8px 9px 2px}
+#app .jbc-machine-shortcuts button{border:1px solid #b68050;background:#fae4bb;color:#693a28;border-radius:8px;padding:7px 2px;font-size:10px;cursor:pointer;min-height:50px}
+#app .jbc-machine-shortcuts button span{font-size:20px;display:block}
+#app .jbc-machine-shortcuts button[aria-pressed=true]{background:#813d33;color:#fff1cd;box-shadow:inset 0 0 0 1px #f5c182}
+#app .workbench>.jbc-preview-panel{display:flex;flex-direction:column;text-align:center}
+#app .jbc-preview-panel .jbc-preview-header{font-weight:800;padding:11px 8px;background:linear-gradient(90deg,#834134,#ad6744);color:#ffedc9;font-size:13px}
+#app .jbc-preview-panel .jbc-drink-title{font-size:12px;font-weight:800;color:#713a2a;padding:8px 5px 2px}
+#app .jbc-preview-stage{position:relative;margin:2px 12px 6px;border:2px inset #d5a570;border-radius:13px;min-height:210px;background:radial-gradient(ellipse at 50% 14%,#fff6e7,#e7be83);display:flex;align-items:center;justify-content:center;overflow:hidden}
+#app .jbc-preview-stage:before{content:'✦  HOUSE SPECIAL  ✦';position:absolute;top:7px;left:0;right:0;color:#b57e4d;font:10px Georgia,serif;letter-spacing:.11em}
+#app .jbc-glass{width:104px;height:146px;position:relative;border:5px solid #ffffffb8;border-top:9px solid #ffffffdf;border-bottom:11px solid #f9f4e4c7;border-radius:5px 5px 20px 20px;clip-path:polygon(0 0,100% 0,93% 100%,7% 100%);background:linear-gradient(110deg,#fff7e37a 0 14%,#9956334d 16% 24%,#f8f2dd73 27% 70%,#fff4dcaa 72% 100%);box-shadow:inset 7px 0 5px #fff9ed99,0 9px 0 #a77b574d;transform:rotate(-2deg);transition:transform .35s;overflow:hidden}
+#app .jbc-glass.jbc-espresso{height:99px;width:120px;border-radius:8px 8px 25px 25px;clip-path:polygon(0 0,100% 0,87% 100%,13% 100%)}
+#app .jbc-glass.jbc-coupe{height:100px;width:160px;border-radius:5px 5px 60px 60px;clip-path:polygon(0 0,100% 0,62% 100%,38% 100%)}
+#app .jbc-glass .jbc-liquid{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(95deg,#502c26,#9d5133 25%,#733d2a 55%,#9f4c2e 80%,#4e2a27);transition:height .4s,background .4s;box-shadow:inset 9px 0 14px #ffdab65b}
+#app .jbc-glass .jbc-liquid:before{content:'';position:absolute;top:-7px;left:0;right:0;height:14px;border-radius:50%;background:#c28959}
+#app .jbc-glass .jbc-foam{position:absolute;left:2px;right:2px;bottom:69%;height:8px;border-radius:50% 50% 12px 12px;background:linear-gradient(#fdf3df,#d7a873);transition:height .4s,bottom .4s;box-shadow:0 -4px 7px #f8e5c9a9}
+#app .jbc-glass .jbc-ice{position:absolute;bottom:20px;left:25%;width:28px;height:21px;border-radius:5px;border:3px solid #f5f9e9bc;background:#d7f6f57f;transform:rotate(22deg);box-shadow:25px -37px 0 -3px #d4eee1c4;opacity:0;transition:opacity .3s}
+#app .jbc-preview-stage .jbc-glow{position:absolute;bottom:19px;width:136px;height:10px;border-radius:50%;background:#603c263d;filter:blur(5px)}
+#app .jbc-preview-stage .jbc-spark{position:absolute;font-size:17px;color:#bf6e46;animation:jbc-sparkle 1.9s infinite alternate;top:43px;left:28px}
+@keyframes jbc-sparkle{to{transform:translateY(-8px);opacity:.4}}
+#app .jbc-preview-status{color:#80523c;font-size:10px;line-height:1.4;margin:0 8px 8px}
+#app .jbc-preview-panel #stat-bars{padding:2px 11px 9px}
+#app .jbc-preview-panel .statrow{margin:7px 0!important;font-size:11px}
+#app .jbc-preview-panel .statrow .meter-track{height:9px!important}
+#app .jbc-preview-panel .statrow output{font-size:11px}
+#app .jbc-preview-panel .main-btn{margin:6px 12px 12px!important}
+#app .jbc-notes-flyout{display:none;margin:0;border:3px double #d8a260;border-radius:12px;padding:10px;background:#f5dfb8}
+#app .jbc-notes-flyout.jbc-open{display:block}
+#app .jbc-notes-flyout .ribbon{font-size:12px}
+#app .jbc-active-btn{animation:jbc-glimmer 2s ease-in-out infinite}
+@keyframes jbc-glimmer{50%{box-shadow:0 0 12px #ffda90}}
+#app .jbc-workspace .workbench .jbc-ing-footer{padding:3px 8px}
+#app footer{color:#f3c990;opacity:.8;font-size:10px;text-align:center}
+@media(min-width:1600px){#app .jbc-showcase{min-height:405px}#app .jbc-showcase #scene{min-height:405px!important}#app .jbc-showcase .order-panel{max-height:445px}#app .jbc-preview-stage{min-height:255px}}
+@media(max-width:1100px){#app .jbc-workspace{grid-template-columns:112px 1fr;gap:7px}#app .jbc-menu button{font-size:11px;padding:10px 2px}#app .jbc-workspace .workbench{grid-template-columns:minmax(250px,1.1fr) minmax(250px,1fr)!important}#app .workbench>.jbc-preview-panel{grid-column:1/-1;display:grid;grid-template-columns:minmax(190px,230px) 1fr;align-items:start}#app .jbc-preview-panel .jbc-preview-header{grid-column:1/-1}#app .jbc-preview-stage{grid-row:2/5;margin:7px;min-height:205px}#app .jbc-preview-panel #stat-bars{grid-column:2;grid-row:2/5;align-self:center}}
+@media(max-width:760px){#app{padding:6px 7px 20px!important}#app .topbar{flex-wrap:wrap!important;gap:6px!important;padding:7px 10px!important}#app .brand{flex:1 1 100%;min-width:0}#app .brand h1{font-size:25px!important}#app .brand small{display:none}#app .top-pill{min-width:0;padding:4px 7px;font-size:11px}#app .shift-panel{flex-wrap:wrap;padding:8px 10px}#app .shift-copy p{display:none}#app .jbc-showcase{grid-template-columns:1fr;min-height:0}#app .jbc-showcase:before{display:none}#app .jbc-showcase .order-panel{max-height:none;overflow:visible;border:0!important;border-bottom:3px solid #9d693e!important}#app .jbc-showcase .order-panel .order-body{padding:7px 4px!important}#app .jbc-showcase .order-panel .quote{padding:8px!important;font-size:12px!important}#app .jbc-showcase #scene{min-height:295px!important;height:295px!important}#app .jbc-workspace{grid-template-columns:1fr;gap:6px}#app .jbc-menu{display:flex;flex-direction:row;overflow-x:auto;gap:6px;padding:7px}#app .jbc-menu-head{display:none}#app .jbc-menu button{min-width:105px;white-space:nowrap;padding:9px 8px;font-size:11px}#app .jbc-workspace .workbench{grid-template-columns:1fr!important}#app .workbench>.jbc-preview-panel{display:flex;grid-column:auto}#app .jbc-preview-stage{min-height:220px}#app .workbench #ingredients{grid-template-columns:repeat(4,minmax(0,1fr))!important}#app .workbench .ing{min-height:73px;padding:5px 2px!important}#app .workbench .ing-icon{font-size:19px!important}#app .workbench .ing-name{font-size:10px!important}}
+@media(max-width:400px){#app .workbench #ingredients{grid-template-columns:repeat(3,minmax(0,1fr))!important}#app .jbc-showcase #scene{height:265px!important;min-height:265px!important}}
+
+#app .jbc-day-panel{margin:9px 0 3px!important;border:1px solid #c38b56!important;border-radius:10px!important;padding:6px!important;background:#ffebc7!important;box-shadow:none!important}
+#app .jbc-day-panel .ribbon{font-size:10px!important;padding:4px!important}
+#app .jbc-day-panel .day-body{padding:4px!important}
+#app .jbc-day-panel .day-event{font-size:10px!important;line-height:1.35!important;margin:3px 0!important}
+#app .jbc-day-panel .guest-queue{margin:4px 0!important;gap:3px!important}
+#app .jbc-day-panel .campaign-actions{gap:4px!important;flex-wrap:wrap}
+#app .jbc-day-panel .campaign-actions button{padding:5px 6px!important;font-size:10px!important}
+#app .jbc-day-panel .guest-insight{font-size:10px!important;line-height:1.4!important;padding:5px!important}
