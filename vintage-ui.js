@@ -20,6 +20,8 @@ function init(){
  workspace.append(nav,bench);
  if(stats){const liveBars=stats.querySelector('#stat-bars');const liveProcess=stats.querySelector('#process-state');stats.classList.add('jbc-preview-panel');stats.innerHTML='<div class="jbc-preview-header">✦ 当前饮品 · YOUR CREATION ✦</div><div class="jbc-drink-title" id="jbc-drink-title">一杯等待诞生的咖啡</div><div class="jbc-preview-stage"><div class="jbc-glow"></div><div class="jbc-glass" id="jbc-glass"><div class="jbc-liquid" id="jbc-liquid"></div><div class="jbc-foam" id="jbc-foam"></div><div class="jbc-ice" id="jbc-ice"></div></div><div class="jbc-spark">✦</div></div><div class="jbc-preview-status" id="jbc-preview-status">调整食材和工艺，杯中效果会随之变化。</div><div id="stat-bars"></div><div id="process-state" class="jbc-preview-status">尚未加工</div>';
  if(liveBars)stats.querySelector('#stat-bars').replaceWith(liveBars);if(liveProcess)stats.querySelector('#process-state').replaceWith(liveProcess);
+ const submitMirror=document.createElement('button');submitMirror.type='button';submitMirror.className='jbc-serve';submitMirror.id='jbc-serve';submitMirror.textContent='☕ 交给顾客品尝';submitMirror.addEventListener('click',()=>q('#submit-btn')?.click());stats.appendChild(submitMirror);
+ const originalSubmit=q('#submit-btn');if(originalSubmit){const sync=()=>{submitMirror.disabled=originalSubmit.disabled};sync();new MutationObserver(sync).observe(originalSubmit,{attributes:true,attributeFilter:['disabled']})}
  bench.append(stats);
  }
  if(notes){notes.classList.add('jbc-notes-flyout');workspace.insertAdjacentElement('afterend',notes)}
