@@ -30,13 +30,51 @@
   renderCup();renderMetrics();renderBook();q('#vx-final').disabled=!V.extracted||V.active||!!V.last;
  }
  function renderMetrics(){const stats=[['辛香',V.spice,'#c76b45'],['浓度',clamp(Math.round((V.grams*3.2*(.65+.35*V.extractQ))/(32+V.water+V.ice*0.24+(V.milk?60:0)) * 58),0,100),'#8e5640'],['冰爽',clamp(Math.round((75-V.temp)*1.2),0,100),'#6396ab'],['泡沫',V.foam,'#ba8a68']];const p=q('#vx-metrics');if(!p)return;p.innerHTML=stats.map(([n,v,col])=>`<div class="vx-stat"><span>${n}</span><b>${v}/100</b></div><div class="vx-track"><span style="width:${v}%;background:${col}"></span></div>`).join('')}
+
+ function gaugeAngle(bar){return -130+(clamp(bar,3,12)-3)/9*260}
+ function gaugePoint(bar,radius){
+  const rad=gaugeAngle(bar)*Math.PI/180;
+  return {x:(120+Math.sin(rad)*radius).toFixed(2),y:(120-Math.cos(rad)*radius).toFixed(2)};
+ }
+ function gaugeMarkup(){
+  let marks='';
+  for(let n=3;n<=12;n+=.5){
+   const major=Math.round(n)===n;
+   const start=gaugePoint(n,major?76:83),end=gaugePoint(n,92);
+   marks+='<line x1="'+start.x+'" y1="'+start.y+'" x2="'+end.x+'" y2="'+end.y+'" stroke="'+(major?'#6f4330':'#c3a47e')+'" stroke-width="'+(major?2.8:1.4)+'" stroke-linecap="round"/>';
+   if(major){
+    const l=gaugePoint(n,61);
+    marks+='<text x="'+l.x+'" y="'+l.y+'" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="Georgia,serif" font-weight="700" fill="#624233">'+n+'</text>';
+   }
+  }
+  const start=gaugePoint(3,93),end=gaugePoint(12,93),idealStart=gaugePoint(8,99),idealEnd=gaugePoint(9,99);
+  return '<div id="vx-gauge" class="vx-gauge'+(V.pressure>=8&&V.pressure<=9?' vx-gauge-good':'')+'" role="slider" aria-label="萃取压力表，沿弧线拖动指针" tabindex="0" aria-valuemin="3" aria-valuemax="12" aria-valuenow="'+V.pressure.toFixed(1)+'" aria-valuetext="'+V.pressure.toFixed(1)+' bar">'
+    +'<svg class="vx-gauge-dial" viewBox="0 0 240 240" aria-hidden="true" focusable="false">'
+    +'<circle cx="120" cy="120" r="109" fill="#bd8d52" stroke="#683b2b" stroke-width="3"/>'
+    +'<circle cx="120" cy="120" r="101" fill="#faf0d4" stroke="#fff6e2" stroke-width="3"/>'
+    +'<path d="M'+start.x+' '+start.y+' A93 93 0 1 1 '+end.x+' '+end.y+'" stroke="#8b6f50" stroke-width="5" fill="none" stroke-linecap="round"/>'
+    +'<path d="M'+idealStart.x+' '+idealStart.y+' A99 99 0 0 1 '+idealEnd.x+' '+idealEnd.y+'" stroke="#579775" stroke-width="10" fill="none" stroke-linecap="round"/>'
+    +marks
+    +'<text x="120" y="83" font-size="10" font-weight="700" text-anchor="middle" fill="#8c6c4e" letter-spacing="2">MISS STEAM</text>'
+    +'<text x="120" y="98" font-size="8" text-anchor="middle" fill="#9d8265" letter-spacing="2">ESPRESSO PRESSURE</text>'
+    +'<g id="vx-needle" transform="rotate('+gaugeAngle(V.pressure).toFixed(2)+' 120 120)">'
+    +'<path d="M117.2 125 L117 120 L120 49 L123 120 L122.8 125 Z" fill="#a23f35" stroke="#71372d" stroke-width="1.3"/>'
+    +'<path d="M120 122 L120 137" stroke="#874e36" stroke-width="6" stroke-linecap="round"/>'
+    +'</g><circle cx="120" cy="120" r="10" fill="#c89a5e" stroke="#6b4130" stroke-width="3"/><circle cx="120" cy="120" r="3" fill="#fff1d5"/>'
+    +'<text id="vx-bar" x="120" y="179" font-size="23" font-family="Georgia,serif" font-weight="700" text-anchor="middle" fill="#6b382b">'+V.pressure.toFixed(1)+' bar</text>'
+    +'<text x="120" y="201" font-size="9" font-weight="700" text-anchor="middle" fill="#67896a" letter-spacing="1.2">GREEN ZONE · 8–9 BAR</text>'
+    +'</svg></div>';
+ }
+
  function renderMode(){if(V.mode==='grind'){
    return `<p class="vx-mini">先拼配两种豆，再握住手柄<b>顺时针 ↻ 画圈研磨</b>。稳定旋转，比疯狂甩动更好。</p>
    <div class="vx-two"><label class="vx-mini">🌶️ 火山辣椒豆 <b id="vx-bean-label">${V.volcano}%</b><input type="range" id="vx-bean" min="0" max="100" step="10" value="${V.volcano}" style="width:100%" ${V.ground?'disabled':''}></label><label class="vx-mini">⚙️ 研磨粗细 <b id="vx-fine-label">${['','极细','细','中细','中粗','粗'][V.grindSize]}</b><input type="range" id="vx-fine" min="1" max="5" value="${V.grindSize}" style="width:100%" ${V.ground?'disabled':''}></label></div>
    <div class="vx-work"><div class="vx-wheel" id="vx-wheel" role="slider" aria-label="转动研磨手柄" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.min(100,Math.round(V.rpm/2*100))}" ${V.ground?'style="opacity:.5"':''}><div class="vx-wheel-arm" style="--deg:${V.rpm*360}deg"></div></div><p class="vx-mini" id="vx-grind-msg">${V.ground?'已完成研磨！':`累计顺时针 ${V.rpm.toFixed(1)} / 2.0 圈 · 可拖动或键盘 →`}</p></div>`;
  }
  if(V.mode==='extract'){
-   return `<p class="vx-mini">在压力板上<b>左右拖动</b>维持约 8–9 bar，并掌握 24–30 秒的黄金萃取时间（游戏内加速）。</p><div class="vx-work"><div id="vx-gauge" class="vx-gauge" role="slider" aria-label="萃取压力控制" tabindex="0" aria-valuemin="3" aria-valuemax="12" aria-valuenow="${V.pressure}"><div class="vx-clock" id="vx-time">${V.seconds.toFixed(1)}s</div><div class="vx-pressure"><i style="--p:${(V.pressure-3)/9*100}%" id="vx-pin"></i></div><div class="vx-pressure-hint"><span>3 bar</span><b id="vx-bar">${V.pressure.toFixed(1)} bar</b><span>12 bar</span></div></div><div class="vx-actions"><button class="vx-btn" id="vx-pull" ${!can('extract')&&!V.active?'disabled':''}>${V.active?'■ 停止萃取':'▶ 拉下萃取杆'}</button></div><p class="vx-mini" id="vx-steam-msg">${V.extracted?'萃取完成，继续加工或出杯。':'准备好就启动，随后用压力板调节。'}</p></div>`;
+   return `<p class="vx-mini">沿圆形压力表<b>拖动红色指针</b>，让它保持在<b>绿色 8–9 bar</b> 区间；游戏内理想萃取时间为 24–30 秒。也支持方向键精调。</p>
+   <div class="vx-work vx-extract-work">${gaugeMarkup()}<div class="vx-extract-timer"><span>⏱ 萃取计时</span><strong id="vx-time">${V.seconds.toFixed(1)}s</strong><span>目标 24–30s</span></div></div>
+   <div class="vx-actions"><button class="vx-btn" id="vx-pull" ${!can('extract')&&!V.active?'disabled':''}>${V.active?'■ 停止萃取':'▶ 拉下萃取杆'}</button></div><p class="vx-mini" id="vx-steam-msg">${V.extracted?'萃取完成，继续加工或出杯。':'启动后可以沿表盘移动指针，听蒸汽的变化。'}</p>`;
  }
  if(V.mode==='chill'){
    return `<p class="vx-mini">选择杯型。冷却<b>不是必经工序</b>；也可以先摇制再冷却，观察泡沫变化。</p><div class="vx-actions">${Object.entries(cupLabels).map(([id,label])=>`<button class="vx-choice" data-cup="${id}" aria-pressed="${V.cup===id}">${label}</button>`).join('')}</div><div class="vx-work"><div style="font-size:64px;line-height:1.2">🧊</div><p class="vx-mini">冰块是可选加工：冰凉 +，可能稀释；若已摇制，冷却可能影响泡沫稳定性。</p><div class="vx-actions"><button class="vx-btn" id="vx-ice" ${!can('chill')?'disabled':''}>❄ 加冰并冷却</button></div></div>`;
@@ -65,9 +103,9 @@
  function movePointer(e){const p=V.interaction;if(!p||p.id!==e.pointerId)return;const now=performance.now(),dt=Math.max(17,now-p.last);if(p.type==='grind'){const wheel=q('#vx-wheel');if(!wheel||!can('grind'))return;const r=wheel.getBoundingClientRect();let angle=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2),diff=angle-p.lastAngle;while(diff>Math.PI)diff-=Math.PI*2;while(diff< -Math.PI)diff+=Math.PI*2;if(Math.abs(diff)<1.35&&diff>0.006)stepGrind(diff/(2*Math.PI),dt);p.lastAngle=angle;}
   else if(p.type==='pressure')updatePressure(e);else if(p.type==='shake'){const dx=e.clientX-p.lastX;p.lastX=e.clientX;const icon=q('#vx-shake-icon');if(icon){icon.style.setProperty('--shakeX',clamp(dx*1.6,-35,35)+'px');icon.style.setProperty('--shakeR',clamp(dx*.3,-18,18)+'deg')};if(Math.abs(dx)>6){const dir=Math.sign(dx);if(p.lastDirection&&dir!==p.lastDirection){shakeStroke(Math.abs(dx));}p.lastDirection=dir;}}p.last=now;}
  function endPointer(e){if(V.interaction&&V.interaction.id===e.pointerId)V.interaction=null}
- function updatePressure(e){const g=q('#vx-gauge');if(!g)return;const r=g.getBoundingClientRect(),x=clamp((e.clientX-r.left)/Math.max(1,r.width),0,1);pressure(3+x*9)}
- function pressure(n){V.pressure=n;const pin=q('#vx-pin'),bar=q('#vx-bar'),g=q('#vx-gauge');if(pin)pin.style.setProperty('--p',((n-3)/9*100)+'%');if(bar)bar.textContent=n.toFixed(1)+' bar';if(g)g.setAttribute('aria-valuenow',n.toFixed(1))}
- let extractStart=0,acc=0,samples=0;function startExtract(){if(!can('extract'))return;V.active=true;V.seconds=0;extractStart=performance.now();acc=0;samples=0;let previous=extractStart;say('Miss Steam','亲爱的，让压力稳定下来！我的黄金时刻只属于懂得倾听的人。');tone(200,.18,'sine',.07,160);const b=q('#vx-pull');if(b)b.textContent='■ 停止萃取';const msg=q('#vx-steam-msg');if(msg)msg.textContent='正在萃取 · 滑动压力板，目标 8–9 bar';const frame=now=>{if(!V.active)return;const dt=Math.min(.07,(now-previous)/1000);previous=now;V.seconds+=dt*7.5;acc+=Math.max(0,1-Math.abs(V.pressure-8.5)/5)*dt;samples+=dt;const t=q('#vx-time');if(t)t.textContent=V.seconds.toFixed(1)+'s';if(now-lastSound>430){if(window.JollySound)window.JollySound.play('steam');else hiss(.08);lastSound=now}if(V.seconds>=44){endExtract();return}V.raf=requestAnimationFrame(frame)};V.raf=requestAnimationFrame(frame)}
+ function updatePressure(e){const g=q('#vx-gauge');if(!g)return;const r=g.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2;if(Math.hypot(dx,dy)<r.width*.085)return;const angle=Math.atan2(dx,-dy)*180/Math.PI;pressure(3+(clamp(angle,-130,130)+130)/260*9)}
+ function pressure(n){V.pressure=clamp(n,3,12);const bar=q('#vx-bar'),g=q('#vx-gauge'),needle=q('#vx-needle');if(needle)needle.setAttribute('transform','rotate('+gaugeAngle(V.pressure).toFixed(2)+' 120 120)');if(bar)bar.textContent=V.pressure.toFixed(1)+' bar';if(g){g.setAttribute('aria-valuenow',V.pressure.toFixed(1));g.setAttribute('aria-valuetext',V.pressure.toFixed(1)+' bar');g.classList.toggle('vx-gauge-good',V.pressure>=8&&V.pressure<=9)}}
+ let extractStart=0,acc=0,samples=0;function startExtract(){if(!can('extract'))return;V.active=true;V.seconds=0;extractStart=performance.now();acc=0;samples=0;let previous=extractStart;say('Miss Steam','亲爱的，让压力稳定下来！我的黄金时刻只属于懂得倾听的人。');tone(200,.18,'sine',.07,160);const b=q('#vx-pull');if(b)b.textContent='■ 停止萃取';const msg=q('#vx-steam-msg');if(msg)msg.textContent='正在萃取 · 拖动表盘指针，目标 8–9 bar';const frame=now=>{if(!V.active)return;const dt=Math.min(.07,(now-previous)/1000);previous=now;V.seconds+=dt*7.5;acc+=Math.max(0,1-Math.abs(V.pressure-8.5)/5)*dt;samples+=dt;const t=q('#vx-time');if(t)t.textContent=V.seconds.toFixed(1)+'s';if(now-lastSound>430){if(window.JollySound)window.JollySound.play('steam');else hiss(.08);lastSound=now}if(V.seconds>=44){endExtract();return}V.raf=requestAnimationFrame(frame)};V.raf=requestAnimationFrame(frame)}
  function endExtract(){if(!V.active)return;V.active=false;if(V.raf)cancelAnimationFrame(V.raf);V.raf=0;V.extracted=true;V.extractQ=clamp((acc/Math.max(.1,samples))*.64+Math.max(0,1-Math.abs(V.seconds-27)/23)*.36,0,1);V.temp=85;V.spice=clamp(Math.round(V.volcano*.70*(.7+V.extractQ*.3)+(V.seconds>33?V.volcano*.1:0)),0,100);tone(540,.16,'triangle');const good=V.extractQ>.73;say('Miss Steam',good?'Bravissima！热浪、香气与压力，全部听从我的歌声。':'嗯……这次的压力略显放肆。不过，至少它还是咖啡。');addStep('extract',`萃取 ${V.seconds.toFixed(0)} 秒 · ${good?'平稳':'波动'}`);choose('chill')}
  function chill(){if(!can('chill'))return;V.chilled=true;V.temp=11;V.ice=V.cup==='espresso'?18:V.cup==='coupe'?35:55;V.water+=(V.cup==='espresso'?3:8);if(V.shaken)V.foam=Math.round(V.foam*.78);(window.JollySound?window.JollySound.play('ice'):(hiss(.16),tone(570,.09,'sine',.07,-170)));say('Mr. Chill',V.shaken?'泡沫已经做好才找我？唔，我会尽可能保住它。':'没错，经理。冷静是一门艺术。');addStep('chill',`冷却 · ${cupLabels[V.cup]}`);choose('shake')}
  function shakeStroke(n){if(!can('shake'))return;V.shakeStroke+=.5;const speed=Math.abs(n);if(speed>230)V.shakeOverflow+=7;if(performance.now()-lastSound>130){(window.JollySound?window.JollySound.play('shake'):tone(170+speed*.5,.075,'triangle',.05));lastSound=performance.now()}const msg=q('#vx-shake-msg');if(msg)msg.textContent=`往返 ${Math.floor(V.shakeStroke)}/6 · ${V.shakeOverflow?'哎呀，快洒出来了！':'摇壶开始起泡！'}`;const el=q('#vx-shakebox');if(el)el.setAttribute('aria-valuenow',Math.min(100,Math.round(V.shakeStroke/6*100)));
