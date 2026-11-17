@@ -30,7 +30,7 @@ function init(){
  const cats=document.createElement('div');cats.className='jbc-categories';cats.innerHTML=[['all','全部'],['base','咖啡基底'],['flavor','风味调味'],['other','冰奶其他']].map(([id,name])=>`<button type="button" data-cat="${id}" aria-pressed="${id==='all'}">${name}</button>`).join('');
  ingredientPanel?.querySelector('.bench-head')?.insertAdjacentElement('afterend',cats);
  const shortcuts=document.createElement('div');shortcuts.className='jbc-machine-shortcuts';shortcuts.innerHTML=[['grindy','⚙️','研磨'],['steam','☕','萃取'],['chill','❄️','冷却'],['shaker','🥁','摇制']].map(([id,icon,name])=>`<button type="button" data-station="${id}" aria-pressed="${id==='steam'}"><span>${icon}</span>${name}</button>`).join('');
- stationPanel?.querySelector('.bench-head')?.insertAdjacentElement('afterend',shortcuts);
+ stationPanel?.querySelector('.machine-title')?.insertAdjacentElement('afterend',shortcuts);
  let chosenCat='all';const categories={all:['beans','water','ice','milk','vanilla','citrus','soda','liqueur'],base:['beans','water'],flavor:['vanilla','citrus','liqueur'],other:['ice','milk','soda']};
  function filterIngredients(){q('#ingredients')?.querySelectorAll('.ing').forEach(node=>{const id=node.querySelector('[data-ing]')?.dataset.ing;node.classList.toggle('jbc-hidden',id&&!categories[chosenCat].includes(id))})}
  cats.addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;chosenCat=b.dataset.cat;cats.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));filterIngredients()});
