@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="theme-color" content="#34221d"/>
-<title>The Jolly Bean Café · Demo 0.1</title>
+<title>The Jolly Bean Café · Demo 0.2</title>
 <style>
 :root{--ink:#37251f;--brown:#5d3028;--wine:#782e31;--wine2:#963e3d;--caramel:#b67e49;--gold:#dcb676;--ivory:#faebcf;--paper:#f2dfb7;--cream:#fff6e2;--mist:#86abb1;--mint:#6b9796;--line:#bf925f;--shadow:rgba(43,22,17,.3);--green:#668c64}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:'Palatino Linotype','Songti SC','STSong','Noto Serif CJK SC',Georgia,serif;background:#2e2020;background-image:radial-gradient(ellipse at 20% 15%,#624136 0%,transparent 42%),linear-gradient(145deg,#281b1a,#50322a 55%,#251d1c);min-height:100vh;font-size:14px}
@@ -18,6 +18,12 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;curs
 @media (max-width:900px){.layout{grid-template-columns:1fr}.left-rail{display:grid;grid-template-columns:1fr 1fr;align-items:start}.left-rail .notes-panel{grid-column:1/-1}.scene{height:350px}.workbench{grid-template-columns:1fr 1fr}.topbar{flex-wrap:wrap}.brand{min-width:190px}.topbar .top-pill{min-width:unset}.speech{left:210px}}
 @media (max-width:680px){#app{padding:8px}.topbar{padding:10px;gap:6px}.brand{flex:1 0 100%;text-align:center}.brand h1{font-size:26px}.top-pill{flex:1;justify-content:center}.top-actions{margin:auto}.left-rail{display:flex}.workbench{grid-template-columns:1fr}.scene{height:315px}.scene-window{left:8px;width:130px;height:150px}.speech{top:5px;left:135px;right:8px;min-height:56px}.bubble{font-size:10px;padding:6px}.speaker{font-size:9px;padding:5px}.menu-board{display:none}.machines{left:2%;right:2%;bottom:55px;height:184px}.machine{height:184px}.machine img{height:137px}.machine label{font-size:10px;padding:3px}.scene-side{right:4px;bottom:63px;flex-direction:row}.side-buddy{width:43px;height:40px}.order-head strong{font-size:21px}.ing{padding:7px 5px;gap:3px;grid-template-columns:22px minmax(0,1fr) auto}.ing-icon{font-size:19px}.ing-name{font-size:11px}.qty{gap:2px}.qty button{width:21px;height:21px}.qty span{min-width:19px;font-size:12px}.result-grade{font-size:72px}.result-card{padding:14px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+[hidden]{display:none!important}
+/* Demo 0.2 – daily challenge */
+.shift-panel{max-width:1700px;margin:15px 0 0;padding:16px 20px;border-radius:21px;border:3px solid #c89a65;color:#f9ebcf;background:linear-gradient(115deg,#6b4035,#4a302d 60%,#36312f);display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 7px 0 #241918,0 10px 22px #0005}
+.shift-copy{flex:1;min-width:220px}.shift-kicker{font-family:Georgia,serif;color:#e1be82;font-size:10px;letter-spacing:.2em}.shift-copy h2{font-size:18px;color:#fff0cf;margin:4px 0}.shift-copy p{font-size:12px;margin:0;line-height:1.55;color:#e6d7bc}.shift-controls{display:flex;gap:9px;flex-wrap:wrap}.shift-controls .main-btn,.shift-controls .ghost-btn{min-height:39px;padding:9px 13px}.shift-panel .ghost-btn{color:#f8e6c3;border-color:#d8bc94}.shift-track{flex:1 0 100%;padding-top:10px;border-top:1px solid #cfa47366}.shift-track[hidden],.shift-next-row[hidden]{display:none!important}.shift-progress{height:11px;border-radius:8px;background:#251d1b;overflow:hidden;display:flex;gap:3px}.shift-segment{height:100%;flex:1;background:#806e60;transition:background .25s}.shift-segment.done{background:#8caf82}.shift-segment.current{background:#efc67f}.shift-figures{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12px;margin-top:8px;color:#f3e3cc}.shift-next-row{flex:1 0 100%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:8px;border-top:1px solid #ffffff25;font-size:13px}.shift-next-row .main-btn{padding:8px 14px}.customer-clue{margin:10px 0;padding:10px 12px;border:1px dashed #ac8058;background:#fff3ce;border-radius:9px;font-size:12px;line-height:1.65}.ask-btn{font-size:12px;width:100%;margin:9px 0 0}.order-avatar{height:96px;width:96px;border-radius:18px;flex:0 0 96px;border:3px solid #a36d50;background:radial-gradient(circle at 32% 30%,#ffeed5,#c98b6c);display:grid;place-items:center;font-size:48px;box-shadow:inset 0 2px 9px #fff5,0 4px 0 #654137}.order-head .portrait[hidden]{display:none}.order-panel .meter-fill{transition:width .35s linear}.event-card,.end-card{max-width:600px}.event-card p{line-height:1.8}.event-face{text-align:center;font-size:54px;margin:8px 0}.event-options{display:grid;gap:10px;margin-top:20px}.event-options button{min-height:46px}.end-summary{font-size:14px;line-height:1.9}.end-rows{display:grid;gap:8px;margin:16px 0}.end-row{display:flex;justify-content:space-between;border-bottom:1px dashed #c2a07b;padding:6px 0;gap:10px}.end-row b{white-space:nowrap}
+@media(max-width:680px){.shift-panel{padding:12px 13px;gap:10px}.shift-copy h2{font-size:16px}.shift-controls{width:100%}.shift-controls button{flex:1}.shift-figures{font-size:11px;gap:7px}}
 </style>
 </head>
 <body>
@@ -30,6 +36,16 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;curs
  <div class="top-pill"><span>最高评价</span><b id="best-score">—</b></div>
  <div class="top-actions"><button class="iconbtn" id="help-btn" title="玩法说明" aria-label="玩法说明">?</button><button class="iconbtn" id="journal-btn" title="咖啡手册" aria-label="咖啡手册">▤</button><button class="iconbtn" id="reset-btn" title="重置当前配方" aria-label="重置当前配方">↻</button></div>
 </header>
+<section class="shift-panel" id="shift-panel" aria-labelledby="shift-heading">
+  <div class="shift-copy">
+    <div class="shift-kicker">NEW · DEMO 0.2 / DAILY CHALLENGE</div>
+    <h2 id="shift-heading">✦ 今天，要招待几位特别的客人</h2>
+    <p id="shift-line">自由研究配方，或者开始一日营业挑战：三位怪客、一场突发事件，以及真正的营业结算。</p>
+  </div>
+  <div class="shift-controls"><button id="shift-start" class="main-btn">▶ 开始一日营业</button><button id="shift-free" class="ghost-btn" hidden>返回自由实验</button></div>
+  <div class="shift-track" id="shift-track" hidden><div class="shift-progress" id="shift-progress"></div><div class="shift-figures"><span id="shift-customer">顾客 1 / 3</span><span id="shift-patience">耐心剩余 100%</span><span id="shift-profit">今日净收入 $0</span></div></div>
+  <div id="shift-next-row" class="shift-next-row" hidden><span id="shift-next-line">这位顾客已评价完毕。</span><button id="shift-next" class="main-btn">下一位顾客 →</button></div>
+</section>
 <main class="layout">
  <aside class="left-rail">
   <section class="panel order-panel" aria-labelledby="order-heading">
@@ -40,7 +56,7 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;curs
      <div class="constraints"><span class="tag">冰爽</span><span class="tag">浓郁</span><span class="tag">细腻泡沫</span><span class="tag">少甜</span></div>
      <div class="patience"><span>顾客耐心</span><span id="patience-label">悠闲等候中 ♡</span></div>
      <div class="meter-track" style="margin:8px 0"><div class="meter-fill" style="width:100%"></div></div>
-     <div class="small-note">这是创意搭配挑战，没有唯一正确配方。可以反复试做，顾客会记住最满意的一杯。</div>
+     <div class="small-note" id="customer-note">这是创意搭配挑战，没有唯一正确配方。可以反复试做，顾客会记住最满意的一杯。</div><div class="customer-clue" id="customer-clue" hidden></div><button class="ghost-btn ask-btn" id="ask-hint" hidden>💬 问问客人真正想要什么（耐心 -12 秒）</button>
    </div>
   </section>
   <section class="panel" aria-label="饮品即时属性"><div class="ribbon">✦　杯中风味罗盘　✦</div><div class="stat-panel"><div class="stat-header">当前饮品属性 <span class="badge-mini" id="process-state">尚未加工</span></div><div id="stat-bars"></div><div class="small-note">属性会随着原料、制作步骤和技术表现变化；不是简单的固定配方打分。</div></div></section>
@@ -66,10 +82,21 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;curs
   </div>
  </div>
 </main>
-<footer>✦ Demo 0.1 — 原型中的数值和配方均为游戏规则，不代表真实咖啡萃取科学　·　<span class="debug-hint">小提示：别忘了让收音机参与制作。</span>　✦</footer>
+<footer>✦ Demo 0.2 — 原型中的数值和配方均为游戏规则，不代表真实咖啡萃取科学　·　<span class="debug-hint">小提示：每位客人都有独一无二的口味，机器伙伴们很愿意帮忙。</span>　✦</footer>
 </div>
 <div id="toast" class="event-toast" hidden role="status" aria-live="polite"></div>
 <div class="result-overlay" id="result-overlay" hidden><div class="result-card"><button class="close-x" id="close-result" aria-label="关闭评分">✕</button><div class="eyebrow">MADAME BUBBLES PRESENTS</div><h2>今日的咖啡审判</h2><div class="result-grade" id="result-grade">A</div><div class="subtitle" id="result-score">88 / 100</div><div class="result-description" id="result-description"></div><div class="result-breakdown" id="result-breakdown"></div><div class="small-note" id="result-reward"></div><div class="result-actions"><button class="ghost-btn" id="result-back">返回咖啡馆</button><button class="main-btn" id="result-again">↻ 再试一杯</button></div></div></div>
+<div class="result-overlay" id="event-overlay" hidden><div class="result-card event-card">
+  <div class="eyebrow">✦ A LITTLE TROUBLE IN PARADISE ✦</div>
+  <div class="event-face">📻 ♪ ♫</div><h2>收音机突然跑调了！</h2>
+  <p>Radio Ruby 接收到了奇怪的干扰，Bop-Shaker 跟着错误的拍子摇个不停。下一位顾客正好特别在乎泡沫……</p>
+  <div class="event-options"><button class="main-btn" id="event-tune">花 $5 调音：下一杯泡沫质量获得加成</button><button class="ghost-btn" id="event-wait">暂时不修：下一位顾客耐心增加 25 秒</button></div>
+</div></div>
+<div class="result-overlay" id="end-overlay" hidden><div class="result-card end-card">
+ <div class="eyebrow">THE JOLLY BEAN · SHIFT COMPLETE</div><h2>✦ 今日打烊 ✦</h2><div class="result-grade" id="end-grade">A</div>
+ <div id="end-summary" class="end-summary"></div><div id="end-rows" class="end-rows"></div>
+ <div class="result-actions"><button class="main-btn" id="end-again">↻ 再开一天</button><button class="ghost-btn" id="end-free">回到自由实验</button></div>
+</div></div>
 <div class="result-overlay" id="journal-overlay" hidden><div class="result-card journal-dialog"><button class="close-x" id="journal-close" aria-label="关闭手册">✕</button><div class="eyebrow">THE MANAGER'S NOTEBOOK</div><h2>咖啡与秘密手册</h2><div class="journal-items" id="journal-items"></div><div style="text-align:center;margin-top:14px"><button class="main-btn" id="journal-done">继续营业</button></div></div></div>
 <script>
 'use strict';
@@ -91,6 +118,39 @@ const clamp=(v,min=0,max=100)=>Math.max(min,Math.min(max,v));
 let persisted={};try{persisted=JSON.parse(localStorage.getItem('jolly-bean-v01')||'{}')}catch(e){}
 const state={ing:{...DEFAULT_ING},ground:false,extracted:false,chilled:false,shaken:false,grind:3,grindQuality:1,extractQuality:0,coolLevel:2,iceSize:'中',shakeQuality:0,operations:[],station:'steam',mini:null,radio:0,tipsy:false,discovered:!!persisted.discovered,attempts:Number(persisted.attempts||0),best:Number(persisted.best||0),money:120,history:Array.isArray(persisted.history)?persisted.history.slice(0,8):[]};
 let toastTimer=null, rafId=0;
+
+/* A complete three-customer daily challenge; free experiment mode stays available. */
+const CUSTOMERS=[
+ {id:'tempo',name:'Mr. Tempo',icon:'🎩',title:'赶电车的浓缩',chapter:'早班 / 赶时间的绅士',quote:'“两口就能让我清醒的浓缩咖啡！别太甜，也别给我堆那些花里胡哨的泡泡，我可要赶电车！”',tags:['浓烈','不甜','不要泡沫','越快越好'],limit:155,price:12,
+  targets:{strength:91,chill:0,foam:0,sweetness:1,dilution:2},weights:{strength:.53,chill:.08,foam:.11,sweetness:.17,dilution:.11},
+  clue:'他真正介意的是咖啡被水冲淡；他宁可要一小杯浓缩，也不愿意加糖。',praise:'“哟！这可比闹钟好使！电车站见！”',complaint:'“这也太温吞了，我的电车都跑远了！”'},
+ {id:'bubbles',name:'Madame Bubbles',icon:'☁️',title:'云朵般的冰美式',chapter:'午后 / 泡沫鉴赏家',quote:'“亲爱的，我要一杯像云一样绵密的冰美式，但绝对不能淡得像水，也不准甜腻腻的！”',tags:['冰爽','浓郁','细腻泡沫','少甜'],limit:215,price:15,
+  targets:{strength:78,chill:83,foam:88,sweetness:4,dilution:13},weights:{strength:.30,chill:.21,foam:.30,sweetness:.12,dilution:.07},
+  clue:'她宁愿稍稍少一点冰，也绝不能接受粗大的泡泡；打发质量远比糖浆重要。',praise:'“噢！这就是我的云朵！我宣布今天的下午茶成功了！”',complaint:'“亲爱的，我说的是云朵，可不是洗碗水！”'},
+ {id:'luna',name:'Miss Luna',icon:'🎙️',title:'剧院散场的闪亮特调',chapter:'夜场 / 神秘歌手',quote:'“演出结束啦！给我一点冰凉、酸甜又闪亮的东西吧，最好像舞台灯一样有层次。”',tags:['冰爽','果香','微甜','气泡质感'],limit:195,price:16,
+  targets:{strength:56,chill:73,foam:30,sweetness:37,complexity:38},weights:{strength:.20,chill:.22,foam:.08,sweetness:.23,complexity:.27},
+  clue:'她说的「闪亮」并非真的要亮灯：带一点柑橘与气泡的活泼口感，会让她联想到谢幕。',praise:'“Encore！要是观众也像这杯咖啡一样懂我就好了！”',complaint:'“唉，这杯饮品连谢幕的掌声都没有。”'}
+];
+const shift={active:false,finished:false,index:0,remainingMs:0,lastTime:0,hintUsed:false,served:false,results:[],income:0,spent:0,buff:null,eventDone:false};
+const currentCustomer=()=>shift.active?CUSTOMERS[shift.index]:CUSTOMERS[1];
+const fmtMoney=n=>'$'+Math.round(n*100)/100;
+function ingredientCost(){const i=state.ing;return Math.round((i.beans*.14+i.water*.003+i.ice*.008+i.milk*.022+i.vanilla*.055+i.citrus*.055+i.soda*.015+i.liqueur*.09)*100)/100}
+function configureCustomer(){const c=currentCustomer();const o=$('.order-panel');o.querySelector('.order-head .eyebrow').textContent=shift.active?`ORDER 00${shift.index+1} · ${c.chapter}`:'ORDER 001 · 特别订单';o.querySelector('.order-head strong').textContent=c.name;o.querySelector('.order-head .subtitle').textContent=c.title;o.querySelector('.quote').textContent=c.quote;o.querySelector('.constraints').innerHTML=c.tags.map(x=>`<span class="tag">${x}</span>`).join('');o.querySelector('.portrait').hidden=c.id!=='bubbles';let avatar=o.querySelector('.order-avatar');if(!avatar){avatar=document.createElement('div');avatar.className='order-avatar';o.querySelector('.order-head').prepend(avatar)}avatar.hidden=c.id==='bubbles';avatar.textContent=c.icon;
+ $('#order-heading').textContent=shift.active?'✦　今日营业 · 挑剔顾客　✦':'✦　自由实验 · 挑剔顾客　✦';$('#ask-hint').hidden=!shift.active||shift.hintUsed;$('#customer-clue').hidden=!shift.active||!shift.hintUsed;$('#customer-clue').textContent=shift.active&&shift.hintUsed?'✦ 经理人的观察笔记：'+c.clue:'';$('#customer-note').textContent=shift.active?'顾客有自己的口味偏好；你可以冒着耐心流失的风险询问，也可以直接做决定。':'自由实验模式：没有倒计时，可以用不同配方反复尝试。';
+ $('.result-card .eyebrow').textContent=shift.active?`${c.name.toUpperCase()} PRESENTS`:'MADAME BUBBLES PRESENTS';
+}
+function renderShift(){const c=currentCustomer();$('#shift-track').hidden=!shift.active;$('#shift-free').hidden=!shift.active;$('#shift-start').hidden=shift.active;$('#shift-start').textContent=shift.finished?'↻ 再开一天':'▶ 开始一日营业';$('#shift-heading').textContent=shift.active?`第 ${shift.index+1} 位顾客 · ${c.title}`:'✦ 今天，要招待几位特别的客人';$('#shift-line').textContent=shift.active?'完成三杯各具风格的咖啡。注意原料成本、客人耐心和可能发生的意外。':'自由研究配方，或者开始一日营业挑战：三位怪客、一场突发事件，以及真正的营业结算。';$('#shift-progress').innerHTML=CUSTOMERS.map((c,i)=>`<span class="shift-segment ${shift.results.length>i?'done':shift.index===i?'current':''}" title="${c.name}"></span>`).join('');$('#shift-customer').textContent=shift.active?`顾客 ${shift.index+1} / 3`:'自由实验';$('#shift-profit').textContent='今日净收入 '+fmtMoney(shift.income-shift.spent);$('#shift-next-row').hidden=!shift.active||!shift.served;$('#shift-next-line').textContent=shift.index===2?'三位顾客全部服务完毕，准备打烊结算。':'这位顾客已经喝到了咖啡。';$('#shift-next').textContent=shift.index===2?'查看打烊成绩 →':'下一位顾客 →';$('#submit-btn').disabled=shift.active&&shift.served;$('#submit-btn').textContent=shift.active&&shift.served?'✓ 已完成本单':'☕ 交给顾客品尝';updatePatience();}
+function updatePatience(){const p=shift.active?Math.round(100*shift.remainingMs/(currentCustomer().limit*1000+(shift.index===1&&shift.buff==='wait'?25000:0))):100;const pct=clamp(p);const label=shift.active?(pct>55?'耐心不错':pct>20?'开始不耐烦':'已经等得很生气'):'悠闲等候中 ♡';$('#patience-label').textContent=shift.active?`${label} · ${Math.ceil(shift.remainingMs/1000)}s`:label;$('.order-panel .patience + .meter-track .meter-fill').style.width=pct+'%';$('#shift-patience').textContent=shift.active?'顾客耐心 '+pct+'%':'自由实验';}
+function tickShift(){if(!shift.active||shift.served||document.hidden||!$('#result-overlay').hidden||!$('#journal-overlay').hidden||!$('#event-overlay').hidden||!$('#end-overlay').hidden){shift.lastTime=performance.now();return}const now=performance.now();if(!shift.lastTime){shift.lastTime=now;return}shift.remainingMs=Math.max(0,shift.remainingMs-Math.min(1400,now-shift.lastTime));shift.lastTime=now;updatePatience();}
+setInterval(tickShift,250);
+function startShift(){shift.active=true;shift.finished=false;shift.index=0;shift.results=[];shift.income=0;shift.spent=0;shift.buff=null;shift.eventDone=false;shift.served=false;shift.hintUsed=false;shift.remainingMs=CUSTOMERS[0].limit*1000;shift.lastTime=0;state.money=120;resetDrink({keepIngredients:false});configureCustomer();renderShift();toast('营业挑战开始！三位怪客正在等着你。');speak('Radio Ruby','各位听众，早安！最棒的经理人，今天的挑战开始啦！')}
+function freeExperiment(){shift.active=false;shift.finished=false;shift.served=false;shift.index=0;shift.hintUsed=false;shift.remainingMs=0;state.money=120;$('#event-overlay').hidden=true;$('#end-overlay').hidden=true;resetDrink({keepIngredients:false});configureCustomer();renderShift();speak('Radio Ruby','自由实验开始！没有营业压力，尽管大胆尝试吧！')}
+function askClue(){if(!shift.active||shift.served||shift.hintUsed)return;shift.hintUsed=true;shift.remainingMs=Math.max(0,shift.remainingMs-12000);configureCustomer();renderShift();speak(currentCustomer().name,currentCustomer().clue);toast('✦ 发现新的顾客偏好！花费 12 秒耐心。')}
+function nextCustomer(){if(!shift.active||!shift.served)return;$('#result-overlay').hidden=true;if(shift.index===2){finishShift();return}if(shift.index===0&&!shift.eventDone){$('#event-overlay').hidden=false;shift.eventDone=true;return}advanceShift()}
+function eventChoice(ch){if(!shift.active)return;shift.buff=ch;if(ch==='tune'){state.money-=5;shift.spent+=5;speak('Radio Ruby','调音完成！Swing 节奏恢复正常，泡泡一定会更漂亮！')}else{speak('Radio Ruby','就让它自己慢慢恢复吧，下一位顾客似乎很愿意等。')};$('#event-overlay').hidden=true;advanceShift()}
+function advanceShift(){shift.index++;shift.served=false;shift.hintUsed=false;shift.remainingMs=CUSTOMERS[shift.index].limit*1000+(shift.index===1&&shift.buff==='wait'?25000:0);shift.lastTime=0;resetDrink({keepIngredients:false});configureCustomer();renderShift();speak('Radio Ruby',`接下来！${currentCustomer().name} 已经推门而入。经理人，请接招！`)}
+function finishShift(){shift.active=false;shift.finished=true;$('#end-overlay').hidden=false;renderShift();const average=Math.round(shift.results.reduce((n,x)=>n+x.score,0)/shift.results.length);const net=shift.income-shift.spent;const rating=average>=88&&net>=20?'S':average>=75&&net>=12?'A':average>=60?'B':'C';$('#end-grade').textContent=rating;$('#end-summary').innerHTML=`三位客人的平均评价 <b>${average} 分</b><br>营业额 <b>${fmtMoney(shift.income)}</b> · 原料与事件成本 <b>${fmtMoney(shift.spent)}</b><br>本日净收入 <b>${fmtMoney(net)}</b> · ${net>0?'Tick-Tick 终于露出了笑容！':'Tick-Tick 正在疯狂翻账本……'}`;$('#end-rows').innerHTML=shift.results.map(x=>`<div class="end-row"><span>${x.guest}</span><b>${x.score} 分 · ${x.grade}</b></div>`).join('');speak('Radio Ruby','今天的咖啡馆正式打烊！机器伙伴们辛苦啦！')}
+
 function save(){try{localStorage.setItem('jolly-bean-v01',JSON.stringify({discovered:state.discovered,attempts:state.attempts,best:state.best,history:state.history.slice(0,8)}))}catch(e){}}
 function speak(who,msg){$('#speaker-name').textContent=who;$('#speech-text').textContent=msg}
 function toast(msg){const box=$('#toast');box.textContent=msg;box.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{box.hidden=true},4000)}
@@ -153,42 +213,38 @@ function startShake(){if(state.shaken)return;if(!state.extracted){toast('先用 
 function updateShake(now){const m=state.mini;if(!m||m.type!=='shake')return;const elapsed=now-m.start;while(m.index<4 && elapsed>m.first+m.index*m.interval+310){if(m.taps[m.index]===null){m.taps[m.index]=false;m.timings.push(999)}m.index++}const beatRow=$('#beats');if(beatRow){beatRow.innerHTML=[0,1,2,3].map(i=>`<div class="beat ${i===m.index?'current':''} ${m.taps[i]===true?'hit':''} ${m.taps[i]===false?'miss':''}">${m.taps[i]===true?'★':i+1}</div>`).join('')}if(m.index>=4){finishShake();return}const status=$('#shake-status');if(status)status.textContent=`第 ${m.index+1} 拍 · 准备！`}
 function hitBeat(){const m=state.mini;if(!m||m.type!=='shake')return;const elapsed=performance.now()-m.start,goal=m.first+m.index*m.interval,error=Math.abs(elapsed-goal);if(m.taps[m.index]!==null)return;m.taps[m.index]=error<=290;m.timings.push(error);if(error>290)toast('Bop-Shaker：拍子跑掉了！');m.index++;if(m.index>=4){finishShake()}else renderStation()}
 function finishShake(){const m=state.mini;if(!m||m.type!=='shake')return;let successes=m.taps.filter(x=>x===true).length,accuracy=successes/4,avgTiming=m.timings.filter(x=>x<999).length?(m.timings.filter(x=>x<999).reduce((a,b)=>a+b,0)/m.timings.filter(x=>x<999).length):290;let bonus=state.radio===0?.08:state.radio===1?.02:0;state.shakeQuality=clamp(accuracy*.76+Math.max(0,(290-avgTiming)/290)*.18+bonus,0,1);state.shaken=true;state.mini=null;cancelAnimationFrame(rafId);addOperation('shake',`Bop-Shaker：四拍命中 ${successes}/4，${successes>=3?'泡沫细腻': '摇壶有点失控'}。`,`${successes}/4`);if(state.ing.liqueur>=10){state.tipsy=true;state.discovered=true;save();toast('✦ 隐藏事件发现：Bop-Shaker 晕乎乎地跳起了摇摆舞！');speak('Bop-Shaker','一、二、五！等等……地板怎么也开始跳舞啦？');}else speak('Bop-Shaker',successes===4?'满分！我就是这间店的节奏之王！':'哈哈！至少我们没有把杯子甩上屋顶！');updateHeader()}
-function evaluate(){if(state.mini){toast('先完成正在进行的机器操作。');return}if(!state.extracted){toast('杯子里还没有咖啡！先研磨并完成萃取。');speak('Madame Bubbles','亲爱的，这杯子里总得有咖啡吧？');return}const a=getAttributes();const scoreParts=[
- {key:'strength',target:78,weight:.30,label:'浓郁度'},
- {key:'chill',target:83,weight:.21,label:'冰爽度'},
- {key:'foam',target:88,weight:.30,label:'泡沫质地'},
- {key:'sweetness',target:4,weight:.12,label:'甜度平衡'},
- {key:'dilution',target:13,weight:.07,label:'稀释控制'}
-];
- let score=100-scoreParts.reduce((s,x)=>s+Math.abs(a[x.key]-x.target)*x.weight*.92,0);
- if(state.extracted)score+=Math.round((state.extractQuality-.65)*9);
- const order=state.operations.map(o=>o.id).join(',');
- if(order==='grind,extract,chill,shake')score+=3;
- if(state.ing.milk>=20)score-=8;
- if(state.ing.liqueur>=10)score-=9;
- score=clamp(Math.round(score));
- if(a.chill<60)score=Math.min(score,79);
- if(a.foam<50)score=Math.min(score,76);
- if(a.strength<50)score=Math.min(score,68);
- const grade=score>=90?'S':score>=78?'A':score>=62?'B':score>=45?'C':'D';
- const wrong=[...scoreParts].sort((x,y)=>(Math.abs(a[y.key]-y.target)*y.weight)-(Math.abs(a[x.key]-x.target)*x.weight));
- const critical=wrong[0].key;
- const critique={strength:a.strength<68?'“这杯咖啡未免太像白开水了吧？”':'“唔，有点太强势了，我的舌头要抗议！”',chill:'“冰美式，亲爱的，重点是冰！”',foam:'“云朵呢？我点的可是云朵！”',sweetness:'“我是来喝咖啡的，不是来吃糖果的！”',dilution:'“这味道是不是在路上被雨淋淡了？”'}[critical];
- const praise=score>=90?'“噢！云朵、雷雨、还有咖啡的灵魂！亲爱的，你简直是一位天才经理人！”':score>=78?'“很不错，亲爱的。至少你终于听懂了我的意思！”':score>=62?`“唔……还行，不过${critique.slice(1,-1)}”`:critique;
- state.attempts++;state.best=Math.max(state.best,score);const reward=score>=90?12:score>=78?9:score>=62?6:3;state.money+=reward;
- const entry={score,grade,ing:{...state.ing},ops:state.operations.map(o=>o.id),time:new Date().toLocaleString('zh-CN')};state.history.unshift(entry);state.history=state.history.slice(0,8);save();updateHeader();
- $('#result-grade').textContent=grade;$('#result-score').textContent=`${score} / 100 · 第 ${state.attempts} 次尝试`;
- $('#result-description').textContent=praise;
- $('#result-breakdown').innerHTML=`<div>浓度<b>${a.strength}</b></div><div>冰感<b>${a.chill}</b></div><div>泡沫<b>${a.foam}</b></div>`;
- $('#result-reward').textContent=`Tick-Tick：本次收入 +$${reward}。${score>=90?'这才叫会做生意！':'我已经记下这笔账啦。'}　·　已自动记录配方`;
- $('#result-overlay').hidden=false;
- speak('Madame Bubbles',praise);
+function evaluate(){
+ if(state.mini){toast('先完成正在进行的机器操作。');return}
+ if(shift.active&&shift.served){toast('这一单已经完成，可以迎接下一位顾客。');return}
+ if(!state.extracted){toast('杯子里还没有咖啡！先研磨并完成萃取。');speak(currentCustomer().name,'咖啡总得先有咖啡吧？');return}
+ const c=currentCustomer(),a=getAttributes(),parts=Object.keys(c.weights).map(key=>({key,target:c.targets[key],weight:c.weights[key]}));
+ let score=100-parts.reduce((sum,x)=>sum+Math.abs(a[x.key]-x.target)*x.weight*1.08,0)+(state.extractQuality-.65)*8;
+ if(c.id==='bubbles'&&shift.active&&shift.buff==='tune'&&state.shaken)score+=Math.min(10,Math.max(0,(100-a.foam)*.45));
+ if(c.id==='bubbles'){if(a.chill<60)score=Math.min(score,78);if(a.foam<50)score=Math.min(score,75);if(a.strength<50)score=Math.min(score,68)}
+ if(c.id==='tempo'){if(a.strength<52)score=Math.min(score,66);if(a.sweetness>38)score=Math.min(score,75)}
+ if(c.id==='luna'){if(a.complexity<12)score=Math.min(score,78);if(a.chill<43)score=Math.min(score,78)}
+ score=clamp(Math.round(score));const grade=score>=90?'S':score>=78?'A':score>=62?'B':score>=45?'C':'D';
+ const worst=[...parts].sort((x,y)=>(Math.abs(a[y.key]-y.target)*y.weight)-(Math.abs(a[x.key]-x.target)*x.weight))[0];
+ const feedback={strength:'咖啡浓淡还不够贴合要求',chill:'温度和冰感还差一点',foam:'泡沫的口感不太对',sweetness:'甜度没掌握好',dilution:'稀释程度需要调整',complexity:'风味层次还不够鲜明'};
+ const text=score>=88?c.praise:score>=68?`“嗯……还可以，但${feedback[worst.key]}。”`:c.complaint;
+ state.attempts++;state.best=Math.max(state.best,score);
+ let reward=score>=90?12:score>=78?9:score>=62?6:3,cost=0,tip=0;
+ if(shift.active){const elapsedRatio=shift.remainingMs/(c.limit*1000+(shift.index===1&&shift.buff==='wait'?25000:0));cost=ingredientCost();tip=score>=78?Math.round(Math.min(5,Math.max(0,elapsedRatio)*5)):0;reward=Math.round((score<50?c.price*.55:c.price*(.68+score*.0032))*100)/100+tip;state.money=Math.round((state.money+reward-cost)*100)/100;shift.income+=reward;shift.spent+=cost;shift.served=true;shift.results.push({guest:c.name,score,grade,reward,cost,tip});}
+ else state.money+=reward;
+ const entry={score,grade,guest:c.name,ing:{...state.ing},ops:state.operations.map(o=>o.id),time:new Date().toLocaleString('zh-CN')};state.history.unshift(entry);state.history=state.history.slice(0,8);save();updateHeader();
+ $('#result-grade').textContent=grade;$('#result-score').textContent=`${score} / 100 · ${c.name}`;
+ $('#result-description').textContent=text;
+ $('#result-breakdown').innerHTML=`<div>浓度<b>${a.strength}</b></div><div>冰感<b>${a.chill}</b></div><div>${c.id==='luna'?'风味层次':'泡沫'}<b>${c.id==='luna'?a.complexity:a.foam}</b></div>`;
+ $('#result-reward').textContent=shift.active?`Tick-Tick：营业收入 ${fmtMoney(reward)}（含小费 ${fmtMoney(tip)}），原料成本 ${fmtMoney(cost)}；本单净收入 ${fmtMoney(reward-cost)}。已存入手册。`:`Tick-Tick：本次实验奖励 +${fmtMoney(reward)}，已自动记录配方。`;
+ $('#result-again').textContent=shift.active?(shift.index===2?'✦ 查看打烊结算':'下一位顾客 →'):'↻ 再试一杯';
+ $('#result-overlay').hidden=false;renderShift();speak(c.name,text);
 }
-function resetDrink({keepIngredients=true}={}){if(state.mini){state.mini=null;cancelAnimationFrame(rafId)}if(!keepIngredients)state.ing={...DEFAULT_ING};state.ground=false;state.extracted=false;state.chilled=false;state.shaken=false;state.grindQuality=1;state.extractQuality=0;state.shakeQuality=0;state.operations=[];state.tipsy=false;state.grind=3;state.coolLevel=2;state.iceSize='中';$('#result-overlay').hidden=true;updateHeader();renderAll();speak('Radio Ruby','新的一杯，新的一天！经理人，这次打算怎么搭配？♪')}
+function resetDrink({keepIngredients=true}={}){if(shift.active&&shift.served){toast('本单已完成！点击「下一位顾客」继续营业。');return}if(state.mini){state.mini=null;cancelAnimationFrame(rafId)}if(!keepIngredients)state.ing={...DEFAULT_ING};state.ground=false;state.extracted=false;state.chilled=false;state.shaken=false;state.grindQuality=1;state.extractQuality=0;state.shakeQuality=0;state.operations=[];state.tipsy=false;state.grind=3;state.coolLevel=2;state.iceSize='中';$('#result-overlay').hidden=true;updateHeader();renderAll();speak('Radio Ruby','新的一杯，新的一天！经理人，这次打算怎么搭配？♪')}
 function renderAll(){renderIngredients();renderStats();renderOperations();renderStation();updateHeader()}
 function cycleRadio(){state.radio=(state.radio+1)%RADIO.length;updateHeader();speak('Radio Ruby',state.radio===0?'Swing 时间！让节奏带动你的手腕！':state.radio===1?'来首慢爵士吧，喝咖啡不一定要着急。':'嘘——让机器休息一会儿。');toast('Radio Ruby · 当前频道：'+RADIO[state.radio]);if(state.station==='shaker'&&!state.mini)renderStation()}
-function openJournal(){const list=$('#journal-items');list.innerHTML=`<div class="journal-item"><strong>经理人的实验记录</strong><div>累计尝试：${state.attempts} 次　｜　最好成绩：${state.best||'—'} 分</div><div class="small-note">这里保存最近八杯调配结果。数据只保存在此浏览器。</div></div>${state.history.length?state.history.map((h,i)=>`<div class="journal-item"><strong>${h.grade} · ${h.score} 分</strong> <small>${h.time||''}</small><div class="small-note">${INGREDIENTS.filter(x=>h.ing[x.id]>0).map(x=>x.name+h.ing[x.id]+x.unit).join('、')}</div><div class="small-note">加工顺序：${h.ops.join(' → ')}</div></div>`).join(''):'<div class="journal-item">还没有完成的咖啡。你的第一份作品正在等着诞生！</div>'}<div class="journal-item"><strong>未公开的小秘密</strong><div>${state.discovered?'✦ Bop-Shaker 的午夜摇摆：看来某种神秘配料会让鼓手脚步不稳……':'???　有些事情只会在你自由实验的时候发生。'}</div></div>`;$('#journal-overlay').hidden=false}
-function showHelp(){$('#journal-overlay').hidden=false;$('#journal-items').innerHTML=`<div class="journal-item"><strong>欢迎，最棒的经理人！</strong><p>你的目标：为 Madame Bubbles 制作一杯浓郁、冰爽、有绵密泡沫且不太甜的冰美式。</p></div><div class="journal-item"><strong>怎么玩</strong><p>① 调整左下方的八种原料数量。<br/>② 点击场景中的 Grindy Joe 磨豆。<br/>③ 交给 Miss Steam 萃取：计时进入绿区时点击停止。<br/>④ 用 Mr. Chill 冷却，再找 Bop-Shaker 跟节奏打发：在四个节拍亮起时按空格。<br/>⑤ 点击「交给顾客品尝」，查看评分并尝试改进。</p></div><div class="journal-item"><strong>互动细节</strong><p>点击 Radio Ruby 切换频道，会影响摇摇机表现；Tick-Tick 可以给经营建议。配方并无唯一解，试试看不同组合会发生什么！</p></div>`}
+function openJournal(){const list=$('#journal-items');list.innerHTML=`<div class="journal-item"><strong>经理人的实验记录</strong><div>累计尝试：${state.attempts} 次　｜　最好成绩：${state.best||'—'} 分</div><div class="small-note">这里保存最近八杯调配结果。数据只保存在此浏览器。</div></div>${state.history.length?state.history.map((h,i)=>`<div class="journal-item"><strong>${h.guest||"Madame Bubbles"} · ${h.grade} · ${h.score} 分</strong> <small>${h.time||''}</small><div class="small-note">${INGREDIENTS.filter(x=>h.ing[x.id]>0).map(x=>x.name+h.ing[x.id]+x.unit).join('、')}</div><div class="small-note">加工顺序：${h.ops.join(' → ')}</div></div>`).join(''):'<div class="journal-item">还没有完成的咖啡。你的第一份作品正在等着诞生！</div>'}<div class="journal-item"><strong>未公开的小秘密</strong><div>${state.discovered?'✦ Bop-Shaker 的午夜摇摆：看来某种神秘配料会让鼓手脚步不稳……':'???　有些事情只会在你自由实验的时候发生。'}</div></div>`;$('#journal-overlay').hidden=false}
+function showHelp(){const mode=shift.active?'<p>目前是一日营业挑战：三位客人连续上门，点击「询问」可揭示隐藏偏好，但会耗费耐心。最后结算收入、小费和原料成本。</p>':'<p>目前是自由实验模式。想要更多挑战，可以在上方点击「开始一日营业」。</p>';
+ $('#journal-overlay').hidden=false;$('#journal-items').innerHTML=`<div class="journal-item"><strong>欢迎，最棒的经理人！</strong>${mode}</div><div class="journal-item"><strong>制作一杯饮品</strong><p>① 选原料和比例。<br>② 使用 Grindy Joe 研磨咖啡豆。<br>③ 用 Miss Steam 萃取，在指针接近理想范围时停止。<br>④ 按订单需要使用 Mr. Chill 冷却、Bop-Shaker 跟着节拍打发。<br>⑤ 点击「交给顾客品尝」，看反馈并修正配方。</p></div><div class="journal-item"><strong>没有唯一的配方答案</strong><p>不同的顾客重视不同属性；你可以先交谈，再决定制作路线。Radio Ruby 会影响打发的节奏，某些原料组合还有隐藏小剧场。</p></div>`}
 // UI events
 $('#ingredients').addEventListener('click',e=>{const btn=e.target.closest('[data-ing]');if(btn)changeIngredient(btn.dataset.ing,Number(btn.dataset.delta))});
 $$('.machine').forEach(b=>b.addEventListener('click',()=>setStation(b.dataset.machine)));
@@ -197,14 +253,21 @@ $('#tick-btn').addEventListener('click',()=>{const a=getAttributes();speak('Tick
 $('#submit-btn').addEventListener('click',evaluate);
 $('#clear-btn').addEventListener('click',()=>resetDrink({keepIngredients:false}));
 $('#redo-btn').addEventListener('click',()=>resetDrink());$('#reset-btn').addEventListener('click',()=>resetDrink());
-$('#result-again').addEventListener('click',()=>resetDrink());$('#result-back').addEventListener('click',()=>{$('#result-overlay').hidden=true});$('#close-result').addEventListener('click',()=>{$('#result-overlay').hidden=true});
+$('#result-again').addEventListener('click',()=>shift.active?nextCustomer():resetDrink());$('#result-back').addEventListener('click',()=>{$('#result-overlay').hidden=true;renderShift()});$('#close-result').addEventListener('click',()=>{$('#result-overlay').hidden=true;renderShift()});
 $('#help-btn').addEventListener('click',showHelp);$('#recipe-btn').addEventListener('click',openJournal);$('#journal-btn').addEventListener('click',openJournal);$('#journal-close').addEventListener('click',()=>$('#journal-overlay').hidden=true);$('#journal-done').addEventListener('click',()=>$('#journal-overlay').hidden=true);
 $('#journal-overlay').addEventListener('click',e=>{if(e.target.id==='journal-overlay')e.target.hidden=true});$('#result-overlay').addEventListener('click',e=>{if(e.target.id==='result-overlay')e.target.hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#journal-overlay').hidden=true;$('#result-overlay').hidden=true;return}if(!$('#journal-overlay').hidden||!$('#result-overlay').hidden)return;if(e.code==='Space'&&state.mini?.type==='shake'){e.preventDefault();hitBeat();return}if(e.target.matches('input,textarea,button'))return;const map={'Digit1':'grindy','Digit2':'steam','Digit3':'chill','Digit4':'shaker'};if(map[e.code])setStation(map[e.code])});
-renderAll();
+$('#shift-start').addEventListener('click',startShift);
+$('#shift-free').addEventListener('click',freeExperiment);
+$('#shift-next').addEventListener('click',nextCustomer);
+$('#ask-hint').addEventListener('click',askClue);
+$('#event-tune').addEventListener('click',()=>eventChoice('tune'));
+$('#event-wait').addEventListener('click',()=>eventChoice('wait'));
+$('#end-again').addEventListener('click',()=>{$('#end-overlay').hidden=true;startShift()});
+$('#end-free').addEventListener('click',freeExperiment);
+renderAll();configureCustomer();renderShift();
 // For lightweight in-browser smoke tests: view current state without exposing data externally.
-window.JollyBeanDemo={getState:()=>({...state,ing:{...state.ing}}),attributes:getAttributes,reset:resetDrink};
+window.JollyBeanDemo={getState:()=>({...state,ing:{...state.ing}}),attributes:getAttributes,reset:resetDrink,getShift:()=>({...shift,results:[...shift.results]}),startShift,askClue,nextCustomer,finishShift,evaluate};
 </script>
-<script src="./music.js" defer></script>
 </body>
 </html>
