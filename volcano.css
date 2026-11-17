@@ -38,10 +38,17 @@
 .vx-work input[type=range]{width:min(340px,95%);accent-color:#883e32;cursor:ew-resize;min-height:27px}
 .vx-wheel{width:185px;height:185px;position:relative;border-radius:50%;touch-action:none;cursor:grab;user-select:none;background:radial-gradient(circle,#ffe1a1 0 19%,#bb814e 21%,#86512d 34%,#dfb77b 37% 41%,#7c4a2e 44% 49%,#e9c28b 53% 59%,#8a5935 61% 70%,transparent 72%);filter:drop-shadow(0 7px 4px #7043216e)}
 .vx-wheel:active{cursor:grabbing}.vx-wheel-arm{position:absolute;inset:0;transform:rotate(var(--deg,0deg));pointer-events:none}.vx-wheel-arm:before{content:"";position:absolute;left:calc(50% - 7px);top:13%;height:38%;width:14px;background:linear-gradient(90deg,#69391e,#fad49a,#8e4c27);border-radius:12px}.vx-wheel-arm:after{content:"";position:absolute;left:calc(50% - 15px);top:6%;width:30px;height:30px;background:#5e2d1d;border:5px solid #f1c178;border-radius:50%}
-.vx-gauge{width:min(300px,96%);position:relative;height:100px;border-radius:12px;border:2px solid #b68c5b;background:linear-gradient(#f6e4c4,#dfbb8f);overflow:hidden;touch-action:none;cursor:crosshair}
-.vx-pressure{height:18px;margin:11px 12px;background:linear-gradient(90deg,#96ac9a 0 45%,#d6a254 46% 73%,#ae5a4b 74%);border-radius:15px;position:relative}.vx-pressure i{display:block;position:absolute;width:14px;height:27px;top:-5px;border:2px solid #673f30;background:#fcdf9c;border-radius:5px;left:var(--p,50%);transform:translateX(-50%);transition:left .08s}
-.vx-pressure-hint{display:flex;justify-content:space-between;font-size:11px;color:#725039;margin:0 12px}
-.vx-clock{font:800 27px Georgia,serif;letter-spacing:2px;color:#61362c;text-align:center;padding:6px}
+
+/* Hand-operated analog pressure instrument — chrome, glass and green target sector. */
+.vx-extract-work{padding:12px 14px 8px;min-height:310px;background:radial-gradient(circle at 50% 38%,#ffe7b9 0%,#d1a56c 100%)}
+.vx-gauge{width:min(255px,95%);height:min(255px,95vw);flex:none;position:relative;border-radius:50%;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 8px 4px #4e2e2455);transition:filter .13s}
+.vx-gauge:active{cursor:grabbing}
+.vx-gauge:focus-visible{outline:3px solid #73966e;outline-offset:4px}
+.vx-gauge.vx-gauge-good{filter:drop-shadow(0 0 9px #77ac6c95) drop-shadow(0 8px 4px #4e2e2455)}
+.vx-gauge-dial{display:block;width:100%;height:100%;pointer-events:none}
+.vx-extract-timer{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;color:#77533a;font-size:12px;font-weight:700;min-height:28px}
+.vx-extract-timer strong{font:800 21px Georgia,serif;color:#5b302a;min-width:65px;text-align:center}
+@media(max-width:470px){.vx-gauge{width:min(210px,88vw);height:min(210px,88vw)}.vx-extract-work{min-height:262px;padding:8px 5px}.vx-extract-timer{gap:5px;font-size:10px}}
 .vx-shake{width:min(350px,96%);height:105px;border-radius:12px;background:linear-gradient(90deg,#f8edd3,#eccb99,#f8edd3);position:relative;border:2px dashed #be8c56;touch-action:none;cursor:ew-resize;display:flex;align-items:center;justify-content:center;user-select:none}
 .vx-shaker{font-size:68px;filter:drop-shadow(0 6px 3px #60341d30);transform:translateX(var(--shakeX,0px)) rotate(var(--shakeR,0deg));transition:transform .07s}
 .vx-story{min-height:55px;background:#fff1d5;border-left:4px solid #9a5d38;padding:11px;margin-top:12px;line-height:1.5;font-size:13px;color:#5c382c}
