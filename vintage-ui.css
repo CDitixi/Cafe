@@ -114,3 +114,16 @@ body{background:#231415!important;background-image:radial-gradient(circle at 50%
 #app .jbc-serve{border:2px solid #edba72;border-radius:24px;background:linear-gradient(#9a3f36,#6c2628);color:#fff0c4;font-size:15px;font-weight:900;padding:12px 15px;margin:2px 12px 12px;box-shadow:inset 0 1px #e8a86c,0 3px 0 #442222;cursor:pointer}
 #app .jbc-serve:disabled{opacity:.55;cursor:not-allowed}
 #app .jbc-serve:not(:disabled):hover{filter:brightness(1.12)}
+
+
+/* Audit fix: reset tablet preview grid layout on narrow portrait screens. */
+@media (max-width:760px){
+ #app .workbench>.jbc-preview-panel{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;align-items:stretch!important}
+ #app .jbc-preview-panel .jbc-preview-header,
+ #app .jbc-preview-panel .jbc-preview-stage,
+ #app .jbc-preview-panel #stat-bars{grid-column:auto!important;grid-row:auto!important}
+ #app .jbc-preview-panel .jbc-preview-stage{display:flex!important;width:auto!important;min-height:210px!important;margin:6px 10px!important;align-items:center!important;justify-content:center!important}
+ #app .jbc-preview-panel #stat-bars{width:auto!important;align-self:stretch!important;padding:8px 14px!important}
+ #app .jbc-preview-panel #process-state{width:auto!important}
+ #app .jbc-preview-panel .jbc-glass{flex:none!important}
+}
