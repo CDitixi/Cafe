@@ -1,13 +1,21 @@
 # The Jolly Bean Café ☕
 
-A playful, original retro-futurist café game prototype featuring quirky machine characters and picky customers.
+A playful, original retro-futurist café management puzzle game with anthropomorphic machines and famously picky guests.
 
-## Try it
+## Play online
 
-Once GitHub Pages is enabled (Settings → Pages → Deploy from a branch → main / root), visit: https://cditixi.github.io/Cafe/
+**https://cditixi.github.io/Cafe/** — works in a browser, no ChatGPT login or backend required.
 
-The playable game is self-contained in `index.html` and does not need a ChatGPT login or backend.
+## Demo 0.2
 
-## Status
+- Serve three customers each day, each with distinct flavor targets and hidden preferences.
+- Ask guests for clues, then choose from eight ingredients and four interactive machine stations.
+- Collect scores and tips, buy persistent upgrades for the machines, and progress through themed days.
+- Discover secret drink recipes, register them in the notebook, and find the hidden Bop-Shaker interaction.
+- Local browser save data via `localStorage`; no accounts, tracking, or server-side saves.
 
-Early playable demo — not final release.
+## Files
+
+`index.html` is a standalone self-contained web game. Download and open it locally or host it on GitHub Pages.
+
+This is an early playable prototype, not a finished commercial game.
