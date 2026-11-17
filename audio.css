@@ -1,0 +1,14 @@
+/* The Jolly Bean Café — Audio Room */
+#jb-audio{position:fixed;right:14px;bottom:14px;z-index:4500;width:min(350px,calc(100vw - 24px));padding:10px 12px 9px;background:linear-gradient(135deg,#3c2423,#68382e);border:2px solid #debd7e;border-radius:13px;box-shadow:0 5px 0 #281916,0 12px 25px #21140e8c;color:#fae5bd;font-family:Georgia,serif}
+#jb-audio *{box-sizing:border-box}
+#jb-audio .jb-audio-title{font-size:10px;letter-spacing:.16em;color:#e5ba83;font-weight:800;margin-bottom:7px}
+#jb-audio .jb-audio-row{display:flex;gap:5px;flex-wrap:wrap}
+#jb-audio button{border:1px solid #cba46f;border-radius:7px;cursor:pointer;background:#f3dcb1;color:#563427;font-size:11px;padding:7px 8px;min-height:32px;font-weight:800;flex:1}
+#jb-audio button[aria-pressed="false"]{background:#64463e;color:#ecd7b6}
+#jb-audio button:hover{filter:brightness(1.10)}
+#jb-audio button:focus-visible,#jb-audio input:focus-visible{outline:3px solid #89ccce;outline-offset:2px}
+#jb-audio .jb-audio-bottom{display:grid;grid-template-columns:auto 83px 1fr;align-items:center;gap:8px;margin-top:8px}
+#jb-audio label{font-size:11px}
+#jb-audio input[type=range]{width:100%;height:20px;accent-color:#f1bb72}
+#jb-now{font:11px/1.25 system-ui,sans-serif;color:#efceaa;text-align:right}
+@media(max-width:680px){#jb-audio{right:6px;bottom:6px;padding:7px 8px;width:min(306px,calc(100vw - 12px))}#jb-audio .jb-audio-title{font-size:9px;margin-bottom:4px}#jb-audio button{font-size:10px;min-height:30px;padding:5px 6px}#jb-audio .jb-audio-bottom{grid-template-columns:auto 68px 1fr;gap:5px;margin-top:4px}#jb-now{font-size:9px}}
